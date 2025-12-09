@@ -30,7 +30,7 @@ public class MilkPails {
         //System.out.println(total);
         
         int maxTotal = total;
-        for (xCount = xCount;xCount != 0; xCount--) {
+        for (xCount = xCount; xCount != 0; xCount--) {
             total -= xSize;
             if (total + ySize <= mSize) {
                 total += ySize;
