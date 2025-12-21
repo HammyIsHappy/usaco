@@ -31,7 +31,6 @@ public class Photoshoot2 {
             }
         } 
 
-
         pw.println(count);
         pw.close();
     }
