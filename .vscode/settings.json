@@ -4,4 +4,6 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar"
     ]
+    ,
+    "editor.inlineSuggest.enabled": false
 }
