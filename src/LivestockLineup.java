@@ -38,7 +38,7 @@ public class LivestockLineup {
         br.close();
 
         ArrayList<String> lineup = new ArrayList<String>();
-        /*lineup.add("Beatrice");
+        lineup.add("Beatrice");
         lineup.add("Sue");
         lineup.add("Belinda");
         lineup.add("Bessie");
@@ -46,17 +46,18 @@ public class LivestockLineup {
         lineup.add("Blue");
         lineup.add("Bella");
         lineup.add("Buttercup");
-        Collections.sort(lineup); */
+        Collections.sort(lineup);
 
         //Create all permutations now.
         ArrayList<ArrayList<String>> allLineups = new ArrayList<ArrayList<String>>();
-        buildAll(lineup, allLineups);
+        ArrayList<String> aLineup = new ArrayList<String>();
+        buildAll(aLineup, allLineups, lineup);
 
         //test
         for (int i = 0; i < allLineups.size(); i++) {
             boolean valid = true;
             for (Pair rule : rules) {
-                if (Math.abs(allLineups.get(i).indexOf(rule.a()) - allLineups.get(i).indexOf(rule.b())) > 1) {
+                if (Math.abs(allLineups.get(i).indexOf(rule.a()) - allLineups.get(i).indexOf(rule.b())) != 1) {
                     valid = false;
                     break;
                 }
@@ -71,15 +72,15 @@ public class LivestockLineup {
         pw.close();
     }
 
-    public static void buildAll(ArrayList<String> aLineup, ArrayList<ArrayList<String>> allLineups) {
+    public static void buildAll(ArrayList<String> aLineup, ArrayList<ArrayList<String>> allLineups, ArrayList<String> cows) {
         if (aLineup.size() == 8) {
-            allLineups.add(aLineup);
+            allLineups.add(new ArrayList<>(aLineup));
             return;
-        }
-        for (String cow : aLineup) {
+        }        
+        for (String cow : cows) {
             if (!aLineup.contains(cow)) {
                 aLineup.add(cow);
-                buildAll(aLineup, allLineups);
+                buildAll(aLineup, allLineups, cows);
                 aLineup.remove(aLineup.size() - 1);
             }
         }
